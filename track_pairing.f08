@@ -162,8 +162,12 @@ program myproject
         modules_tbc_no = modules_tbc_no + 1 
     end do 
 
-5   print *, "What's the radius?"
+5   print *, 'What is the radius?'
     read *, radius 
+    if (radius > 0.5) then
+        print *, 'Radius is too large, 0 < radius < 0.5'
+        go to 5
+    end if
 
     ! Modify initial modules
     open(newunit=iu_fm, file='final_modules.txt', status='new', iostat=ios)
