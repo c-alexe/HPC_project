@@ -202,6 +202,7 @@ program myproject
     if (ios==0) then
         open(newunit=iu_g, file='global_tracks.txt', iostat=ios, status='new')
         if (ios==0) then
+            write(iu_g, '(a)') "Track number  Charge      m              c             pt"
             read(iu_l, *, iostat = ios_read) tracks_no_input
             if (ios_read/=0) then
                 print *, "Cannot read total number of tracks"
