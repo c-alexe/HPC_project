@@ -9,7 +9,7 @@ subroutine change_intercept(old_c, m, module_x_position, module_y_position)
     real(kind=selected_real_kind(12)), intent(in) :: m, module_x_position, module_y_position
     real(kind=selected_real_kind(12)), intent(inout) :: old_c
 
-    old_c = old_c + module_x_position*m - module_y_position
+    old_c = old_c - module_x_position*m + module_y_position
 end subroutine
 
 subroutine is_pair(m1, c1, q1, m2, c2, q2, r, answer)
