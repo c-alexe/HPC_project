@@ -162,10 +162,10 @@ program myproject
         modules_tbc_no = modules_tbc_no + 1 
     end do 
 
-5   print *, 'What is the radius?'
+5   print *, 'What is the maximum distance between the pair origin and the collision point?'
     read *, radius 
     if (radius > 0.5) then
-        print *, 'Radius is too large, 0 < radius < 0.5'
+        print *, 'Distance is too large, 0 < distance < 0.5'
         go to 5
     end if
 
