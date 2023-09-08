@@ -144,6 +144,7 @@ program myproject
 
 3       print *, 'Change in x?'
         read *, delta_x
+        ! Checks based on established detector geometry
         if (delta_x >0.2 .or. delta_x <-0.2) then
             print*, 'The shift is too large, -0.2<= shift <=0.2'
             go to 3
@@ -159,7 +160,7 @@ program myproject
         module_shifts(i) = module_coordinates(module_name_tbc, delta_x, delta_y)
         modules_to_be_changed(i) = module_name_tbc  
 
-        modules_tbc_no = modules_tbc_no + 1 
+        modules_tbc_no = modules_tbc_no + 1
     end do 
 
 5   print *, 'What is the maximum distance between the pair origin and the collision point?'
@@ -168,6 +169,7 @@ program myproject
         print *, 'Distance is too large, 0 < distance < 0.5'
         go to 5
     end if
+    
 
     ! Modify initial modules
     open(newunit=iu_fm, file='final_modules.txt', status='new', iostat=ios)
@@ -248,6 +250,7 @@ program myproject
                 if (pair_status.eqv..true.) then
                     pairs_no = pairs_no + 1
                     write(iu_p, '(a,a)', advance='no') tracks_array(i)%track_name, tracks_array(j)%track_name 
+                    ! Compute invariant mass
                     write(iu_p, '(f15.4)') invariant_mass(tracks_array(i)%pt, tracks_array(i)%m, tracks_array(j)%pt, &
                     tracks_array(j)%m)
                 end if
@@ -263,7 +266,6 @@ program myproject
     contains
         subroutine is_changed(current_module, module_array, array_size, answer)
             character(len=10), intent(in) :: current_module
-            ! in presentation say it s internal for the array size
             character(len=10), dimension(maximum_modules), intent(in) :: module_array
             integer, intent(in) :: array_size
             logical, intent(out) :: answer
